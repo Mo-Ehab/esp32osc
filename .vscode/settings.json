@@ -1,0 +1,5 @@
+{
+    "rust-analyzer.check.allTargets": false,
+    "idf.portWin": "COM12",
+    "idf.flashType": "UART",
+}
