@@ -3,7 +3,7 @@
 
 
 use esp_backtrace as _;
-use esp_hal::{adc::{AdcConfig, Attenuation, ADC}, clock::ClockControl, peripherals::{Peripherals, ADC2}, prelude::*, uart::{config::{Config, DataBits, Parity, StopBits}, TxRxPins}, Uart, IO};
+use esp_hal::{adc::{AdcConfig, Attenuation, ADC}, clock::ClockControl, peripherals::{Peripherals, ADC1}, prelude::*, uart::{config::{Config, DataBits, Parity, StopBits}, TxRxPins}, Uart, IO};
 use ufmt::uwrite;
 
 #[entry]
@@ -16,12 +16,12 @@ fn main() -> ! {
 
     let io = IO::new(peripherals.GPIO, peripherals.IO_MUX);
 
-    let analog_pin = io.pins.gpio25.into_analog();
+    let analog_pin = io.pins.gpio36.into_analog();
 
     let mut adc1_config = AdcConfig::new();
     let mut adc1_pin = adc1_config.enable_pin(analog_pin, Attenuation::Attenuation0dB);
 
-    let mut adc1 = ADC::<ADC2>::new(peripherals.ADC2, adc1_config);
+    let mut adc1 = ADC::<ADC1>::new(peripherals.ADC1, adc1_config);
 
 
     let config = Config {
